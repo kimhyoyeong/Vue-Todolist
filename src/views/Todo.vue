@@ -1,6 +1,7 @@
 <template>
   <base-layout>
-    <!-- input box -->
+
+    <!-- input box(s) -->
     <div class="input-box">
       <TodoInput
       type="text"
@@ -9,6 +10,8 @@
         <img src="@/assets/images/btn_go.png" alt="">
       </todo-button>
     </div>
+    <!-- input box(e) -->
+
     <TodoSelect/>
     <todo-list>
       <todo-list-item>
@@ -34,6 +37,20 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+/* input area */
+.input-box {
+  position: relative;
+  input {
+
+  }
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
 
 </style>
