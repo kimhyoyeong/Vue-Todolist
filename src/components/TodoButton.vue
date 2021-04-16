@@ -1,5 +1,6 @@
 <template>
   <button>
+    버튼
     <slot></slot>
   </button>
 </template>
@@ -29,5 +30,14 @@ button {
   height: 30px;
   border-radius: 50%;
   background-color: #fff;
+  transition: all 0.3s ease-out;
+  img {
+    transition: all 0.3s ease-out;
+  }
+  &:hover {
+    img {
+      transform: translateX(3px);
+    }    
+  }
 }
 </style>
