@@ -1,12 +1,6 @@
 <template>
   <div id="wrap">
     <base-header></base-header>
-    <div class="top">
-      <p class="time-text">Good morning! afternoon! evening! night!</p>
-      <p class="tasks-count">
-        <span><em>2</em>/4</span> 완료!
-      </p>
-    </div>
     <slot></slot>
     <base-footer></base-footer>
   </div>
@@ -47,6 +41,5 @@ export default {
       }
     }
   }
- 
 }
 </style>

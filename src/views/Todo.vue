@@ -1,5 +1,13 @@
 <template>
   <base-layout>
+    <!-- 상단 정보 Start -->
+    <div class="top">
+      <p class="time-text">Good morning! afternoon! evening! night!</p>
+      <p class="tasks-count">
+        <span><em>2</em>/4</span> 완료!
+      </p>
+    </div>
+    <!-- 상단 정보 End -->
 
     <!-- input box(s) -->
     <div class="input-box">
@@ -14,9 +22,6 @@
 
     <TodoSelect/>
     <todo-list>
-      <todo-list-item>
-        내용
-      </todo-list-item>
     </todo-list>
   </base-layout>
 </template>
@@ -27,12 +32,11 @@ import TodoInput from '@/components/TodoInput'
 import TodoButton from '@/components/TodoButton'
 import TodoSelect from '@/components/TodoSelect'
 import TodoList from '@/components/TodoList'
-import TodoListItem from '@/components/TodoListItem'
 
 export default {
   name: "Todo",
   components: {
-    BaseLayout, TodoInput, TodoButton, TodoSelect, TodoList, TodoListItem
+    BaseLayout, TodoInput, TodoButton, TodoSelect, TodoList
   }
 }
 </script>
