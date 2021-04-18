@@ -65,6 +65,49 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+input {
+  display: none;
 
+  &:checked {
+    + label {
+      &:after {
+        background-color: #fc4545;
+      }
+    }
+  }
+
+  + label {
+    position: relative;
+    display: block;
+    padding-left: 35px;
+    color: #333;
+    text-align: left;
+
+    &:before,
+    &:after {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      margin: auto;
+    }
+
+    &:before {
+      left: 2px;
+      top: 0;
+      width: 19px;
+      height: 15px;
+      z-index: 1;
+    }
+
+    &:after {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 24px;
+      height: 24px;
+      background-color: #e6e6e6;
+    }
+  }
+}
 </style>

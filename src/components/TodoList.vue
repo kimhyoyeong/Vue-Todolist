@@ -1,14 +1,15 @@
 <template>
   <div>
-    리스트
-    <ul>
-      <li v-for="(item, key) in todoData" :key="key">
-        <div>
+    <ul class="todo-list">
+      <li v-for="(item, key) in todoData"
+          :key="key"
+          class="todo" >
+        <div class="view">
           <TodoCheckbox
               :label="item.title"
               v-model="item.completed"
               :checked="item.completed" />
-          <button class="destroy" @click="removeTodo(item)">삭제</button>
+          <button class="destroy" @click="removeTodo(item)"></button>
         </div>
       </li>
     </ul>
@@ -46,6 +47,38 @@ name: "TodoList",
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.todo-list {
+  background-color: #ffffff;
 
+  li {
+    position: relative;
+    font-size: 24px;
+    border-bottom: 1px solid #ededed;
+
+    .destroy {
+      display: none;
+      position: absolute;
+      top: 0;
+      right: 10px;
+      bottom: 0;
+      width: 40px;
+      height: 40px;
+      margin: auto 0;
+      margin-bottom: 11px;
+      font-size: 30px;
+      color: #fc4545;
+
+      &::after {
+        content: 'x'
+      }
+    }
+
+    &:hover {
+      .destroy {
+        display: block;
+      }
+    }
+  }
+}
 </style>
