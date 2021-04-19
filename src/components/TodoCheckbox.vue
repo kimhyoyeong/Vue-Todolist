@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="checkbox">
     <input type="checkbox"
            :id="_id"
            :value="value"
@@ -66,47 +66,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-input {
-  display: none;
-
-  &:checked {
+.checkbox {
+  input[type=checkbox] {
     + label {
-      &:after {
-        background-color: #fc4545;
+      position: absolute;
+      padding-left: 35px;
+
+      &:before {
+        content: "";
+        width: 20px;
+        height: 20px;
+        margin: auto;
+        position: absolute;
+        left: 0;
+        border-radius: 2px;
+        box-shadow: inset -2px 2px 5px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
       }
     }
-  }
 
-  + label {
-    position: relative;
-    display: block;
-    padding-left: 35px;
-    color: #333;
-    text-align: left;
+    &:checked {
+      +label {
+        text-decoration-line: line-through;
+        color: #d9d9d9;
 
-    &:before,
-    &:after {
-      content: '';
-      display: inline-block;
-      position: absolute;
-      margin: auto;
-    }
-
-    &:before {
-      left: 2px;
-      top: 0;
-      width: 19px;
-      height: 15px;
-      z-index: 1;
-    }
-
-    &:after {
-      top: 0;
-      bottom: 0;
-      left: 0;
-      width: 24px;
-      height: 24px;
-      background-color: #e6e6e6;
+        &:before {
+          background: url('~@/assets/images/check.svg') no-repeat;
+          text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+          font-size: 18px;
+        }
+      }
     }
   }
 }
