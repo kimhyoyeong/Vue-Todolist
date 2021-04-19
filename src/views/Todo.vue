@@ -2,7 +2,7 @@
   <base-layout>
     <!-- 상단 정보 Start -->
     <div class="top">
-      <p class="time-text">Good morning! afternoon! evening! night!</p>
+      <p class="time-text">{{ message }}</p>
       <p class="tasks-count">
         <span><em>2</em>/4</span> 완료!
       </p>
@@ -37,11 +37,52 @@ export default {
   name: "Todo",
   components: {
     BaseLayout, TodoInput, TodoButton, TodoSelect, TodoList
+  },
+  data() {
+    return {
+      am : 'Good morning!',
+      pm : 'Good afternoon!'
+    }
+  },
+  computed: {
+    message: function () {
+      const now = this.$moment().format('A');
+      if (now === '오전') {
+        return this.am
+      } else {
+        return this.pm
+      }
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+  .top {
+    padding: 0 1rem;
+    color: #fff;
+  
+    .time-text {
+      margin-top: 3rem;
+      font-size: 0.8rem;
+    }
+  
+    .tasks-count {
+      margin: 3rem 0 2rem;
+      font-size: 1rem;
+      line-height: 1.5;
+    
+      span {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 2.5rem;
+        letter-spacing: 0.3rem;
+      
+        em {
+          color: rgba(255, 255, 255, 1);
+        }
+      }
+    }
+  }
 
 /* input area */
 .input-box {
