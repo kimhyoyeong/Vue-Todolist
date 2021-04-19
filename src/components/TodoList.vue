@@ -9,6 +9,7 @@
               :label="item.title"
               v-model="item.completed"
               :checked="item.completed" />
+          <span>{{ $moment(item.created_at).format('YYYY-MM-DD HH:mm') }}</span>
           <button class="destroy" @click="removeTodo(item)"></button>
         </div>
       </li>
