@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul class="todo-list">
-      <li v-for="(item, key) in todoData"
+      <li v-for="(item, key) in list"
           :key="key"
           class="todo" >
         <div class="view">
@@ -11,6 +11,9 @@
               :checked="item.completed" />
           <button class="destroy" @click="removeTodo(item)"></button>
         </div>
+      </li>
+      <li v-if="list.length===0">
+        데이터가 없습니다.
       </li>
     </ul>
   </div>
@@ -22,27 +25,16 @@ import TodoCheckbox from "@/components/TodoCheckbox";
 export default {
 name: "TodoList",
   components: { TodoCheckbox },
-  data() {
-    return {
-      todoData: [
-        {
-          title: 'vue todo 리스트 만들기',
-          created_at: '2021-04-14 20:00:00',
-          completed: true,
-        },
-        {
-          title: '리스트 컴포넌트 만들기',
-          created_at: '2021-04-18 15:00:00',
-          completed: false,
-        }
-      ]
-    }
+  props: {
+    list: {
+      type: Array,
+    },
   },
   methods: {
     removeTodo(item) {
       console.log(item)
       // 리스트 아이템 삭제 코드
-    }
+    },
   }
 }
 </script>
