@@ -37,11 +37,12 @@ export default {
 .todo {
   position: relative;
   font-size: 24px;
-  border-bottom: 1px solid #ededed;
+  border: 1px solid #ededed;
+  background-color: #ffffff;
 
-  .completed {
-    color: #d9d9d9;
-    text-decoration-line: line-through;
+  .view {
+    color: #7d7d7d;
+    font-size: 16px;
   }
 
   .destroy {

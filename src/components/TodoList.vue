@@ -27,7 +27,6 @@ name: "TodoList",
 
 <style lang="scss" scoped>
 .todo-list {
-  background-color: #ffffff;
   width: 100%;
 }
 </style>
