@@ -49,10 +49,12 @@ export default {
             localStorage.setItem('todo-filter', filter)
         },
 
-        // 날짜 정렬시 호출할 action을 만들어주세요.
-        orderByAsc() {
+        // 날짜 정렬(오름차순)
+        orderByDateAsc() {
         },
-        orderByDesc() {
+
+        // 날짜 정렬(내림차순)
+        orderByDateDesc() {
         },
 
         // 데이터 추가
@@ -66,5 +68,10 @@ export default {
         // list item 하나에 대한 삭제
         clear() {
         },
+
+        // 리스트 아이템 토글
+        toggle() {
+            
+        }
     },
 }
