@@ -8,12 +8,6 @@ import moment from 'moment'
 moment.locale('ko')
 Vue.use(vueMoment, { moment })
 
-import VueMoment from 'vue-moment'
-import moment from "moment";
-
-moment.locale("ko"); // vue-moment 사용시 언어를 한글로 설정
-Vue.use(VueMoment, {moment})
-
 Vue.config.productionTip = false
 
 // css
