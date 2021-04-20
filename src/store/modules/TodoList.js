@@ -49,10 +49,10 @@ export default {
       return todoList;
     },
     getTodoListAll(state) {
-      return state.list;
+      return state.list.length;
     },
     getTodoListCompleted(state) {
-      return state.list.filter((item) => item.completed);
+      return state.list.filter((item) => item.completed).length;
     }
   },
   mutations: {

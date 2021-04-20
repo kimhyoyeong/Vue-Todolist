@@ -58,12 +58,12 @@ export default {
       return this.$store.getters.getTodoList
     },
     todoListAll() {
-      return this.$store.getters.getTodoListAll.length
+      return this.$store.getters.getTodoListAll
     },
     todoListCompleted() {
-      return this.$store.getters.getTodoListCompleted.length
+      return this.$store.getters.getTodoListCompleted
     },
-    message: function () {
+    message() {
       const now = this.$moment().format('A');
       if (now === '오전') {
         return this.am
