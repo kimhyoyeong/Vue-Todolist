@@ -12,8 +12,8 @@
     <!-- input box(s) -->
     <div class="input-box">
       <TodoInput
-      type="text"
-      placeholder="Please enter text here"/>
+          type="text"
+          placeholder="Please enter text here"/>
       <todo-button>
         <img src="@/assets/images/btn_go.png" alt="">
       </todo-button>
@@ -30,7 +30,7 @@
     </div>
     <!-- list에 대한 컨트롤 부분 (e) -->
 
-    <TodoList :list="todoList" />
+    <TodoList :list="todoList"/>
   </base-layout>
 </template>
 
@@ -48,8 +48,8 @@ export default {
   },
   data() {
     return {
-      am : 'Good morning!',
-      pm : 'Good afternoon!',
+      am: 'Good morning!',
+      pm: 'Good afternoon!',
       listFilter: this.$store.state.Todo.listFilter
     }
   },
@@ -85,35 +85,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .top {
-    padding: 0 1rem;
-    color: #fff;
-  
-    .time-text {
-      margin-top: 3rem;
-      font-size: 0.8rem;
-    }
-  
-    .tasks-count {
-      margin: 3rem 0 2rem;
-      font-size: 1rem;
-      line-height: 1.5;
-    
-      span {
-        color: rgba(255, 255, 255, 0.5);
-        font-size: 2.5rem;
-        letter-spacing: 0.3rem;
-      
-        em {
-          color: rgba(255, 255, 255, 1);
-        }
+.top {
+  padding: 0 1rem;
+  color: #fff;
+
+  .time-text {
+    margin-top: 3rem;
+    font-size: 0.8rem;
+  }
+
+  .tasks-count {
+    margin: 3rem 0 2rem;
+    font-size: 1rem;
+    line-height: 1.5;
+
+    span {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 2.5rem;
+      letter-spacing: 0.3rem;
+
+      em {
+        color: rgba(255, 255, 255, 1);
       }
     }
   }
+}
 
 /* input area */
 .input-box {
   position: relative;
+
   button {
     position: absolute;
     top: 0;
