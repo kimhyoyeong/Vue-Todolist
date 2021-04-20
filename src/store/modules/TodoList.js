@@ -42,6 +42,14 @@ export default {
         setFilter(state, filter) {
             state.listFilter = filter
         },
+        toggleTodo(state, todo) {
+            const index = state.list.indexOf(todo)
+            if(index>-1) state.list[index].completed = todo.completed
+        },
+        removeTodo(state, todo) {
+            const index = state.list.indexOf(todo)
+            if(index>-1) state.list.splice(index, 1)
+        }
     },
     actions: {
         setFilter({commit}, filter) {
@@ -49,7 +57,7 @@ export default {
             localStorage.setItem('todo-filter', filter)
         },
 
-        // 날짜 정렬(오름차순)
+        // 날짜 정렬(오름차순) // action을 사용하지 않고 getter에 만들어서 호출하는 방법도 있음
         orderByDateAsc() {
         },
 
@@ -66,12 +74,13 @@ export default {
         },
 
         // list item 하나에 대한 삭제
-        clear() {
+        clear({commit}, todo) {
+            commit('removeTodo', todo)
         },
 
         // 리스트 아이템 토글
-        toggle() {
-            
+        toggleTodo({commit}, todo) {
+            commit('toggleTodo', todo)
         }
     },
 }
