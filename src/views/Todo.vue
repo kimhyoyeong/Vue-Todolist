@@ -4,7 +4,7 @@
     <div class="top">
       <p class="time-text">{{ message }}</p>
       <p class="tasks-count">
-        <span><em>2</em>/4</span> 완료!
+        <span><em>{{ todoListCompleted }}</em>/{{ todoListAll }}</span> 완료!
       </p>
     </div>
     <!-- 상단 정보 End -->
@@ -56,6 +56,12 @@ export default {
   computed: {
     todoList() {
       return this.$store.getters.getTodoList
+    },
+    todoListAll() {
+      return this.$store.getters.getTodoListAll.length
+    },
+    todoListCompleted() {
+      return this.$store.getters.getTodoListCompleted.length
     },
     message: function () {
       const now = this.$moment().format('A');

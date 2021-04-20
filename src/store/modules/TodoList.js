@@ -48,6 +48,12 @@ export default {
 
       return todoList;
     },
+    getTodoListAll(state) {
+      return state.list;
+    },
+    getTodoListCompleted(state) {
+      return state.list.filter((item) => item.completed);
+    }
   },
   mutations: {
     setFilter(state, filter) {
