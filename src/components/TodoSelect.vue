@@ -13,14 +13,14 @@ export default {
   methods: {
     orderByDate(event) {
       if (event.target.value === "orderDesc") {
-        this.$store.commit("orderByDateDesc");
+        this.$store.dispatch("orderByDateDesc");
       } else if (event.target.value === "orderAsc") {
-        this.$store.commit("orderByDateAsc");
+        this.$store.dispatch("orderByDateAsc");
       }
     },
   },
   mounted() {
-    this.$store.commit("orderByDateDesc");
+    this.$store.dispatch("orderByDateDesc");
   },
 };
 </script>
