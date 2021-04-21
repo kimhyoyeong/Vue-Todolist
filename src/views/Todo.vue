@@ -68,7 +68,7 @@ export default {
       this.$store.dispatch('setFilter', newFilter)
     },
     listClearAll() {
-      alert('전체 삭제 기능 추가 예정')
+      this.$store.dispatch('clearAll')
     },
   }
 }

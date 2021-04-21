@@ -47,6 +47,10 @@ export default {
                 localStorage.setItem('todo-list', JSON.stringify(state.list))
             }
         },
+        listClearAll(state) {
+            state.list.splice(0)
+            localStorage.clear()
+        },
         orderByDateAsc(state) {
             state.list.sort(function (a, b) {
                 // 오름차순
@@ -95,7 +99,8 @@ export default {
         },
 
         // 전체 삭제.
-        clearAll() {
+        clearAll({commit}) {
+            commit("listClearAll")
         },
 
         // list item 하나에 대한 삭제
