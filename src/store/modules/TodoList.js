@@ -35,11 +35,17 @@ export default {
         },
         toggleTodo(state, todo) {
             const index = state.list.indexOf(todo);
-            if (index > -1) state.list[index].completed = todo.completed
+            if (index > -1) {
+                state.list[index].completed = todo.completed
+                localStorage.setItem('todo-list', JSON.stringify(state.list))
+            }
         },
         removeTodo(state, todo) {
             const index = state.list.indexOf(todo)
-            if (index > -1) state.list.splice(index, 1)
+            if (index > -1) {
+                state.list.splice(index, 1)
+                localStorage.setItem('todo-list', JSON.stringify(state.list))
+            }
         },
         orderByDateAsc(state) {
             state.list.sort(function (a, b) {
