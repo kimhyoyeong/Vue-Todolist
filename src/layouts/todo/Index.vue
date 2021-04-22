@@ -22,6 +22,6 @@ export default {
   overflow-y:auto;
   height: 100vh;
   padding-bottom:3rem;
-  background: linear-gradient(-180deg, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+  background: linear-gradient(-45deg, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
 }
 </style>

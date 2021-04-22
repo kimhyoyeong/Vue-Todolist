@@ -3,9 +3,10 @@
     <!-- 상단 정보 Start -->
     <div class="top">
       <p class="time-text">{{ message }}</p>
-      <p class="tasks-count">
+      <p class="tasks-count" v-if="todoList.length>0">
         <span><em>{{ todoListCompleted }}</em>/{{ todoListAll }}</span> 완료!
       </p>
+      <p class="tasks-count" v-else>LET'S GO TODO :)</p>
       <TodoAdd />
     </div>
     <!-- 상단 정보 End -->
