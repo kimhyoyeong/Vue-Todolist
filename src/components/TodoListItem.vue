@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     removeTodo(item) {
-      this.$store.dispatch('clear', item)
+      this.$store.dispatch('removeTodo', item)
     },
     toggleCompleted(item) {
       this.$store.dispatch('toggleTodo', item)
