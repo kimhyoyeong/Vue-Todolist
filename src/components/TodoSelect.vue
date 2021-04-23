@@ -20,15 +20,15 @@ export default {
   methods: {
     orderByDate(event, selectedIndex) {
       if (event.target.value === "orderDesc") {
-        this.$store.dispatch("orderByDateDesc", selectedIndex);
+        this.$store.dispatch("Todo/orderByDateDesc", selectedIndex);
       } else if (event.target.value === "orderAsc") {
-        this.$store.dispatch("orderByDateAsc", selectedIndex);
+        this.$store.dispatch("Todo/orderByDateAsc", selectedIndex);
       }
     },
   },
   computed: {
     listSelect() {
-      return this.$store.getters.getTodoSelect;
+      return this.$store.getters["Todo/getTodoSelect"];
     },
   },
 };
