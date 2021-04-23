@@ -4,7 +4,7 @@
     :value="value"
     :placeholder="placeholder"
     @input="change"
-    @keyup.enter="$emit('enter')">
+  >
 </template>
 
 <script>
