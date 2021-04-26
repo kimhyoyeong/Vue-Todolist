@@ -7,7 +7,7 @@
         <span><em>{{ todoListCompleted }}</em>/{{ todoListAll }}</span> 완료!
       </p>
       <p class="tasks-count" v-else>LET'S GO TODO :)</p>
-      <TodoAdd />
+      <TodoAdd/>
     </div>
     <!-- 상단 정보 End -->
 
@@ -49,6 +49,13 @@ export default {
   },
   computed: {
     todoList() {
+      /**
+       * module에 namespace를 주기 전 getters 사용
+       * this.$store.getters.getTodoList
+       *
+       * namespace 추가 후
+       * this.$store.getters["Todo/getTodoList"]
+       */
       return this.$store.getters["Todo/getTodoList"]
     },
     todoListAll() {
@@ -84,7 +91,7 @@ export default {
   color: #fff;
 
   .time-text {
-    text-align:right;
+    text-align: right;
   }
 
   .tasks-count {
@@ -103,32 +110,38 @@ export default {
     }
   }
 }
-.btn-box{
-  padding:0 1rem;
-  .filter-box{
-    button{
-      padding:0.5rem;
-      margin-right:0.5rem;
-      color:#fff;
-      border-radius:10px;
-      text-transform:uppercase;
-      &.active{
-        background-color: rgba(255,255,255,.5);
-        box-shadow: 0 10px 10px rgba(0,0,0,.1);
+
+.btn-box {
+  padding: 0 1rem;
+
+  .filter-box {
+    button {
+      padding: 0.5rem;
+      margin-right: 0.5rem;
+      color: #fff;
+      border-radius: 10px;
+      text-transform: uppercase;
+
+      &.active {
+        background-color: rgba(255, 255, 255, .5);
+        box-shadow: 0 10px 10px rgba(0, 0, 0, .1);
       }
-      &:last-child{
-        margin-right:0;
+
+      &:last-child {
+        margin-right: 0;
       }
     }
   }
-  .btn-del{
-    text-align:right;
-    button{
-      padding:0.5rem;
-      font-size:0.8rem;
-      color:rgba(238,87,83,.8);
-      text-decoration:underline;
-      text-transform:uppercase;
+
+  .btn-del {
+    text-align: right;
+
+    button {
+      padding: 0.5rem;
+      font-size: 0.8rem;
+      color: rgba(238, 87, 83, .8);
+      text-decoration: underline;
+      text-transform: uppercase;
     }
   }
 }
