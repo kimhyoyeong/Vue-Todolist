@@ -96,7 +96,11 @@ export default {
             localStorage.setItem("todo-select", JSON.stringify(state.listSelect))
         },
         addTodo(state, item) {
-            state.list.push(item)
+            if (state.listSelect[0].selected === true) {
+                state.list.unshift(item)
+            } else {
+                state.list.push(item)
+            }
         },
     },
     actions: {
