@@ -1,23 +1,24 @@
 <template>
   <div class="todo-add">
     <TodoInput
-      v-model="text"
-      type="text"
-      placeholder="Please enter text here"
-      @keyup.enter.native="listAdd"/>
+        v-model="text"
+        type="text"
+        placeholder="Please enter text here"
+        @keyup.enter.native="listAdd"/>
     <todo-button
-      @click.native="listAdd">
+        @click.native="listAdd">
       <img src="@/assets/images/btn_go.png" alt="">
     </todo-button>
 
     <!-- modal -->
     <todo-modal
-      v-show="modalActive"
-      @close="modalActive = false">
+        v-show="modalActive"
+        @close="modalActive = false">
       <p>내용을 입력해주세요.</p>
-      <button 
-        @click="modalActive = false"
-        >확인</button>
+      <button
+          @click="modalActive = false"
+      >확인
+      </button>
     </todo-modal>
   </div>
 </template>
@@ -29,7 +30,7 @@ import TodoModal from '@/components/TodoModal'
 
 export default {
   name: "TodoAdd",
-  components: { TodoInput, TodoButton, TodoModal },
+  components: {TodoInput, TodoButton, TodoModal},
   data() {
     return {
       text: null,
@@ -38,7 +39,7 @@ export default {
   },
   methods: {
     listAdd: function () {
-      if( this.text === null ) {
+      if (this.text === null) {
         this.modalActive = true
       } else {
         let todo = {
@@ -50,7 +51,7 @@ export default {
         this.text = null
       }
     },
-  },  
+  },
 }
 </script>
 
@@ -58,6 +59,7 @@ export default {
 /* input area */
 .todo-add {
   position: relative;
+
   .button {
     position: absolute;
     top: 0;
@@ -74,6 +76,7 @@ export default {
     font-size: 16px;
     text-align: center;
   }
+
   button {
     display: block;
     margin: 0 auto;

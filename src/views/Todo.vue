@@ -7,13 +7,13 @@
         <span><em>{{ todoListCompleted }}</em>/{{ todoListAll }}</span> 완료!
       </p>
       <p class="tasks-count" v-else>LET'S GO TODO :)</p>
-      <TodoAdd />
+      <TodoAdd/>
     </div>
     <!-- 상단 정보 End -->
 
     <!-- list에 대한 컨트롤 부분 (s) : 추후 컴포넌트로 뺄지 고민 중 -->
     <div class="btn-box">
-      <TodoSelect />
+      <TodoSelect/>
       <div class="filter-box">
         <button @click="setFilter('all')" :class="{active: listFilter === 'all'}">All</button>
         <button @click="setFilter('active')" :class="{active: listFilter === 'active'}">Active</button>
@@ -29,12 +29,12 @@
 
     <!-- modal -->
     <todo-modal
-      v-show="modalActive"
-      @close="modalActive = false">
+        v-show="modalActive"
+        @close="modalActive = false">
       <p>전부 삭제하시겠어요?</p>
-      <button 
-        @click="listClearAll(item)"
-      >OK</button>
+      <div class="btn-box">
+        <button @click="listClearAll()">OK</button>
+      </div>
     </todo-modal>
 
   </base-layout>
@@ -89,9 +89,6 @@ export default {
       this.modalActive = false
     },
   },
-  mounted() {
-    // console.log('Todo modal 상태', this.$store.state.Todo.modal);
-  }
 }
 </script>
 
@@ -101,7 +98,7 @@ export default {
   color: #fff;
 
   .time-text {
-    text-align:right;
+    text-align: right;
   }
 
   .tasks-count {
@@ -120,32 +117,38 @@ export default {
     }
   }
 }
-.btn-box{
-  padding:0 1rem;
-  .filter-box{
-    button{
-      padding:0.5rem;
-      margin-right:0.5rem;
-      color:#fff;
-      border-radius:10px;
-      text-transform:uppercase;
-      &.active{
-        background-color: rgba(255,255,255,.5);
-        box-shadow: 0 10px 10px rgba(0,0,0,.1);
+
+.btn-box {
+  padding: 0 1rem;
+
+  .filter-box {
+    button {
+      padding: 0.5rem;
+      margin-right: 0.5rem;
+      color: #fff;
+      border-radius: 10px;
+      text-transform: uppercase;
+
+      &.active {
+        background-color: rgba(255, 255, 255, .5);
+        box-shadow: 0 10px 10px rgba(0, 0, 0, .1);
       }
-      &:last-child{
-        margin-right:0;
+
+      &:last-child {
+        margin-right: 0;
       }
     }
   }
-  .btn-del{
-    text-align:right;
-    button{
-      padding:0.5rem;
-      font-size:0.8rem;
-      color:rgba(238,87,83,.8);
-      text-decoration:underline;
-      text-transform:uppercase;
+
+  .btn-del {
+    text-align: right;
+
+    button {
+      padding: 0.5rem;
+      font-size: 0.8rem;
+      color: rgba(238, 87, 83, .8);
+      text-decoration: underline;
+      text-transform: uppercase;
     }
   }
 }
@@ -157,6 +160,7 @@ export default {
     font-size: 16px;
     text-align: center;
   }
+
   button {
     display: block;
     margin: 0 auto;
@@ -166,6 +170,6 @@ export default {
     font-size: 15px;
     background-color: #ee5753;
     border-radius: 10px;
-  }  
+  }
 }
 </style>

@@ -113,7 +113,7 @@ export default {
             } else {
                 state.list.push(item)
             }
-            
+
             // todolist 객체를 문자열로 만들어 로컬 스토리지에 저장
             localStorage.setItem("todo-list", JSON.stringify(state.list))
         },

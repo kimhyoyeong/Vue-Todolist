@@ -12,12 +12,13 @@
 
     <!-- modal -->
     <todo-modal
-      v-show="modalActive"
-      @close="modalActive = false">
+        v-show="modalActive"
+        @close="modalActive = false">
       <p>정말로 삭제하시겠어요?</p>
-      <button 
-        @click="removeTodo(item)"
-      >OK</button>
+      <button
+          @click="removeTodo(item)"
+      >OK
+      </button>
     </todo-modal>
   </div>
 </template>
@@ -42,7 +43,7 @@ export default {
   },
   methods: {
     removeTodo(item) {
-      this.$store.dispatch('Todo/removeTodo', item)      
+      this.$store.dispatch('Todo/removeTodo', item)
       this.modalActive = false
     },
     toggleCompleted(item) {
@@ -95,6 +96,7 @@ export default {
     font-size: 16px;
     text-align: center;
   }
+
   button {
     display: block;
     margin: 0 auto;
@@ -104,6 +106,6 @@ export default {
     font-size: 15px;
     background-color: #ee5753;
     border-radius: 10px;
-  }  
+  }
 }
 </style>
