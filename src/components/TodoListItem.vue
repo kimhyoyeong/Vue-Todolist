@@ -13,6 +13,8 @@
     <!-- modal -->
     <todo-modal
         v-show="modalActive"
+        :width="(($device.windows) ? 15 : 60)"
+        :unit="'%'"
         @close="modalActive = false">
       <p>정말로 삭제하시겠어요?</p>
 

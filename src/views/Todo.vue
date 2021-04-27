@@ -30,7 +30,7 @@
     <!-- modal -->
     <todo-modal
         v-show="modalActive"
-        :width=15
+        :width="(($device.windows) ? 15 : 60)"
         :unit="'%'"
         @close="modalActive = false">
       <p>전부 삭제하시겠어요?</p>
@@ -101,9 +101,6 @@ export default {
       this.modalActive = false
     },
   },
-  mounted() {
-    console.log(this.$device)
-  }
 }
 </script>
 
