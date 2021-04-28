@@ -11,9 +11,9 @@
     </div>
     <!-- 상단 정보 End -->
 
-    <!-- list에 대한 컨트롤 부분 (s) : 추후 컴포넌트로 뺄지 고민 중 -->
+    <!-- list에 대한 컨트롤 부분 (s) -->
     <div class="btn-box">
-      <TodoSelect/>
+      <TodoSelect :options="options"/>
       <div class="filter-box">
         <button @click="setFilter('all')" :class="{active: listFilter === 'all'}">All</button>
         <button @click="setFilter('active')" :class="{active: listFilter === 'active'}">Active</button>
@@ -89,6 +89,9 @@ export default {
       } else {
         return this.pm
       }
+    },
+    options() {
+      return this.$store.getters["Todo/getTodoSelect"]
     }
   },
   methods: {
