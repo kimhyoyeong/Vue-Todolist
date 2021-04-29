@@ -7,7 +7,7 @@ export const TodoPlugin = store => {
         // 변이는 { type, payload } 포맷으로 제공됩니다.
 
         // todo에 대한 mutation type 배열
-        const todoMutations = ['Todo/addTodo', 'Todo/removeTodo', 'Todo/toggleTodo', 'Todo/orderByDateAsc', 'Todo/orderByDateDesc']
+        const todoMutations = ['Todo/addTodo', 'Todo/removeTodo', 'Todo/toggleTodo', 'Todo/listSort']
 
         if(todoMutations.includes(mutation.type)) {
             localStorage.setItem("todo-list", JSON.stringify(state.Todo.list))
@@ -15,6 +15,14 @@ export const TodoPlugin = store => {
 
         if(mutation.type === 'Todo/listClearAll') {
             localStorage.removeItem("todo-list")
+        }
+
+        if(mutation.type === "Todo/setFilter") {
+            localStorage.setItem("todo-filter", state.Todo.listFilter)
+        }
+
+        if(mutation.type === "Todo/setOrderBy") {
+            localStorage.setItem("todo-orderby", state.Todo.orderBy)
         }
     })
 }

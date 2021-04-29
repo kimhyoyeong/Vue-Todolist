@@ -66,7 +66,6 @@ export default {
                         return new Date(b.created_at) - new Date(a.created_at)
                     })
                 }
-                localStorage.setItem("todo-list", JSON.stringify(state.list))
             }
         },
         addTodo(state, item) {
@@ -80,7 +79,6 @@ export default {
     actions: {
         setFilter({commit}, filter) {
             commit("setFilter", filter)
-            localStorage.setItem("todo-filter", filter)
         },
 
         setTodoList({commit}, todoList) {
