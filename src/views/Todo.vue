@@ -13,7 +13,11 @@
 
     <!-- list에 대한 컨트롤 부분 (s) -->
     <div class="btn-box">
-      <TodoSelect :options="options"/>
+      <TodoSelect :options="options"
+                  v-model="orderBy"
+                  @change.native="setOrderBy"
+      />
+
       <div class="filter-box">
         <button @click="setFilter('all')" :class="{active: listFilter === 'all'}">All</button>
         <button @click="setFilter('active')" :class="{active: listFilter === 'active'}">Active</button>
@@ -61,11 +65,26 @@ export default {
     return {
       am: 'Good morning!',
       pm: 'Good afternoon!',
-      listFilter: this.$store.state.Todo.listFilter,
       modalActive: false,
+      options: [
+        {
+          label: "최신순",
+          value: "desc",
+        },
+        {
+          label: "오래된순",
+          value: "asc",
+        }
+      ],
     }
   },
   computed: {
+    listFilter() {
+      return this.$store.state.Todo.listFilter
+    },
+    orderBy() {
+      return this.$store.state.Todo.orderBy
+    },
     todoList() {
       /**
        * module에 namespace를 주기 전 getters 사용
@@ -90,19 +109,18 @@ export default {
         return this.pm
       }
     },
-    options() {
-      return this.$store.getters["Todo/getTodoSelect"]
-    }
   },
   methods: {
     setFilter(newFilter) {
-      this.listFilter = newFilter
       this.$store.dispatch('Todo/setFilter', newFilter)
     },
     listClearAll() {
       this.$store.dispatch('Todo/clearAll')
       this.modalActive = false
     },
+    setOrderBy() {
+      this.$store.dispatch('Todo/setOrderBy', this.orderBy)
+    }
   },
 }
 </script>
@@ -168,7 +186,7 @@ export default {
   }
 }
 
-// modal 
+// modal
 .modal-content {
   p {
     padding: 15px 0 30px;

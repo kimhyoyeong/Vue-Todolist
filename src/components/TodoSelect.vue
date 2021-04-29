@@ -1,12 +1,12 @@
 <template>
   <div class="order-select">
-    <select @change="orderByDate($event, $event.target.selectedIndex)">
+    <select @input="change">
       <option
           v-for="(item, index) in options"
-          :key="`key-${index}`"
-          :value="item.type"
-          :selected="item.selected"
-      >{{ item.option }}
+          :key="index"
+          :value="item.value"
+          :selected="(item.value === value)"
+      >{{ item.label }}
       </option>
     </select>
   </div>
@@ -19,15 +19,14 @@ export default {
     options: {
       type: Array,
       required: true,
+    },
+    value: {
+      type: String,
     }
   },
   methods: {
-    orderByDate(event, selectedIndex) {
-      if (event.target.value === "orderDesc") {
-        this.$store.dispatch("Todo/orderByDateDesc", selectedIndex)
-      } else if (event.target.value === "orderAsc") {
-        this.$store.dispatch("Todo/orderByDateAsc", selectedIndex)
-      }
+    change(e) {
+      this.$emit('input', e.target.value)
     },
   },
 }
