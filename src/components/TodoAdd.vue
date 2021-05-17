@@ -50,9 +50,9 @@ export default {
         this.modalActive = true
       } else {
         let todo = {
-          title: this.text,
-          completed: false,
-          created_at: this.$moment()
+          text: this.text,
+          state: 1,
+          created_at: this.$moment().format('YYYY-MM-DD HH:mm:ss'),
         }
         this.$store.dispatch('Todo/addTodo', todo)
         this.text = ''

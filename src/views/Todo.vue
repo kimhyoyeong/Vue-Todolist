@@ -34,8 +34,6 @@
     <!-- modal -->
     <todo-modal
         v-show="modalActive"
-        :width="(($device.windows) ? 15 : 60)"
-        :unit="'%'"
         @close="modalActive = false">
       <p>전부 삭제하시겠어요?</p>
       <div class="btn-wrap">

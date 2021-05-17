@@ -3,9 +3,11 @@ export default {
     state: {
         /**
          * list: [{
-         *     title: String,
-         *     completed: Boolean,
-         *     created_at: Date
+         *     id: Number, // 각 todoslit의 id(할일 아이디) : device의 고유번호를 넣어주면 됨. axios get 테스트 시에는 1을 사용
+         *     text: String, // 할일 내용, 기존의 title
+         *     state: Number, // 상태값(1: 미완료, 2: 완료)
+         *     created_at: String, // 생성일시(format: 2021-05-13 08:57:55)
+         *     updated_at: String, // 수정일시(format: 2021-05-13 09:06:16)
          * }]
          */
         list: [],
@@ -17,9 +19,9 @@ export default {
             let todoList = state.list
 
             if (state.listFilter === "active") {
-                todoList = state.list.filter((item) => !item.completed)
+                todoList = state.list.filter((item) => item.state === 1)
             } else if (state.listFilter === "completed") {
-                todoList = state.list.filter((item) => item.completed)
+                todoList = state.list.filter((item) => item.state === 2)
             }
 
             return todoList
@@ -28,7 +30,7 @@ export default {
             return state.list.length
         },
         getCountCompletedList(state) {
-            return state.list.filter((item) => item.completed).length
+            return state.list.filter((item) => item.state === 2).length
         },
     },
     mutations: {
@@ -43,7 +45,7 @@ export default {
         },
         toggleTodo(state, todo) {
             const index = state.list.indexOf(todo)
-            if (index > -1) state.list[index].completed = todo.completed
+            if (index > -1) state.list[index].state = todo.state
         },
         removeTodo(state, todo) {
             const index = state.list.indexOf(todo)
