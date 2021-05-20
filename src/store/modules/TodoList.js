@@ -1,3 +1,5 @@
+import BaseAxios from '@/store/api/BaseAxios';
+
 export default {
     namespaced: true,
     state: {
@@ -83,8 +85,16 @@ export default {
             commit("setFilter", filter)
         },
 
-        setTodoList({commit}, todoList) {
+        /*setTodoList({commit}, todoList) {
             commit("setTodoList", todoList)
+        },*/
+
+        setTodoList({commit}) {
+            BaseAxios.get('/api/v1/todos/1').then(res => {
+                console.log(res.data)
+            }).then(data=> {
+                commit("setTodoList", data)
+            })
         },
 
         setOrderBy({commit}, item) {
