@@ -85,15 +85,10 @@ export default {
             commit("setFilter", filter)
         },
 
-        /*setTodoList({commit}, todoList) {
-            commit("setTodoList", todoList)
-        },*/
-
         setTodoList({commit}) {
             BaseAxios.get('/api/v1/todos/1').then(res => {
                 console.log(res.data)
-            }).then(data=> {
-                commit("setTodoList", data)
+                commit("setTodoList", res.data.data)
             })
         },
 
