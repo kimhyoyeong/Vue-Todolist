@@ -1,5 +1,5 @@
-//import { axiosDefault } from "@/store/api/BaseAxios";
-import todoApi from "@/store/api/BaseAxios";
+import { axiosDefault } from "@/store/api/BaseAxios";
+//import todoApi from "@/store/api/BaseAxios";
 
 export default {
   namespaced: true,
@@ -87,7 +87,7 @@ export default {
     },
 
     async setTodoList({ commit }) {
-      return await todoApi
+      return await axiosDefault()
         .get("/api/v1/todos/1")
         .catch((err) => {
           // handle error
