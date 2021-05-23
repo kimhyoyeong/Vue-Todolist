@@ -1,3 +1,5 @@
+import $axios from '@/store/api/BaseAxios';
+
 export default {
     namespaced: true,
     state: {
@@ -83,9 +85,21 @@ export default {
             commit("setFilter", filter)
         },
 
-        setTodoList({commit}, todoList) {
-            commit("setTodoList", todoList)
-        },
+        async setTodoList({ commit }, todoList) {
+            return await $axios.get(`/api/v1/todos/${todoList}`,
+                {
+                    params: {
+                        todoList : todoList
+                    }
+                }
+            )
+                .then(response =>{
+                    commit('setTodoList', response.data.data)
+                })
+                .catch(error => {
+                    console.log('error ::' + error);
+                })
+        }, 
 
         setOrderBy({commit}, item) {
             // 정렬값 저장
