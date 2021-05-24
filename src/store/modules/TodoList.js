@@ -13,6 +13,7 @@ export default {
          * }]
          */
         list: [],
+        userId: 1,
         listFilter: "all",
         orderBy: "desc",
     },
@@ -36,6 +37,9 @@ export default {
         },
     },
     mutations: {
+        setUserId(state, userId) {
+            state.userId = userId
+        },
         setFilter(state, filter) {
             state.listFilter = filter
         },
@@ -71,28 +75,39 @@ export default {
                 }
             }
         },
-        addTodo(state, item) {
-            if (state.orderBy === "asc") {
-                state.list.unshift(item)
-            } else {
-                state.list.push(item)
-            }
-        },
     },
     actions: {
+        setUserId({commit}, userId) {
+            commit("setUserId", userId)
+        },
+
         setFilter({commit}, filter) {
             commit("setFilter", filter)
         },
 
-        async getTodoList({commit}, userId) {
+        async getUserId({commit}) {
             return await axiosDefault()
-                .get("/api/v1/todos/" + userId)
+                .post("/api/v1/user")
+                .catch((err) => {
+                    // handle error
+                    console.log("error :: " + err)
+                })
+                .then((res) => {
+                    console.log("post userId 생성 :: " + res.message)
+                    commit("setUserId", res.data.user_id)
+                })
+        },
+
+        async getTodoList({commit, state}) {
+            return await axiosDefault()
+                .get(`/api/v1/todos/${state.userId}`)
                 .catch((err) => {
                     // handle error
                     console.log("error :: " + err)
                 })
                 .then((res) => {
                     commit("setTodoList", res.data)
+                    commit("listSort")
                 })
         },
 
@@ -106,30 +121,63 @@ export default {
         },
 
         // 데이터 추가
-        addTodo({commit}, item) {
-            commit("addTodo", item)
-        },
-
-        // 전체 삭제.
-        clearAll({commit}) {
-            commit("listClearAll")
-        },
-
-        // list item 하나에 대한 삭제
-        removeTodo({commit}, todo) {
-            commit("removeTodo", todo)
-        },
-
-        // 리스트 아이템 토글
-        async toggleTodo({commit}, todo) {
-            return await axiosDefault()
-                .patch("/api/v1/todos/" + todo.id, todo)
+        // eslint-disable-next-line no-unused-vars
+        async addTodo({commit, state}, item) {
+            await axiosDefault()
+                .post(`/api/v1/todos/${state.userId}`, item)
                 .catch((err) => {
                     // handle error
                     console.log("error :: " + err)
                 })
                 .then((res) => {
-                    commit("toggleTodo", res.data)
+                    console.log("post 추가 :: " + res.message)
+                })
+
+            this.dispatch('Todo/getTodoList')
+        },
+
+        // 전체 삭제.
+        async clearAll({commit, state}) {
+            for (const item of state.list) {
+                await axiosDefault()
+                    .delete(`/api/v1/todos/${item.id}`)
+                    .catch((err) => {
+                        // handle error
+                        console.log("error :: " + err)
+                    })
+                    .then((res) => {
+                        console.log("delete 삭제 :: " + res.message)
+                    })
+            }
+            commit("listClearAll")
+        },
+
+        // list item 하나에 대한 삭제
+        async removeTodo({commit}, todo) {
+            await axiosDefault()
+                .delete(`/api/v1/todos/${todo.id}`)
+                .catch((err) => {
+                    // handle error
+                    console.log("error :: " + err)
+                })
+                .then((res) => {
+                    console.log("delete 삭제 :: " + res.message)
+                    commit("removeTodo", todo)
+                })
+        },
+
+        // 리스트 아이템 토글
+        // eslint-disable-next-line no-unused-vars
+        async toggleTodo({commit}, todo) {
+            return await axiosDefault()
+                .patch(`/api/v1/todos/${todo.id}`, todo)
+                .catch((err) => {
+                    // handle error
+                    console.log("error :: " + err)
+                })
+                .then((res) => {
+                    console.log("patch 토글 :: " + res.message)
+                    commit("toggleTodo", todo)
                 })
         },
     },

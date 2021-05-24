@@ -45,14 +45,13 @@ export default {
   },
   methods: {
     listAdd: function () {
-      if(this.text.trim() === '') {
+      if (this.text.trim() === '') {
         this.text = ''
         this.modalActive = true
       } else {
         let todo = {
           text: this.text,
           state: 1,
-          created_at: this.$moment().format('YYYY-MM-DD HH:mm:ss'),
         }
         this.$store.dispatch('Todo/addTodo', todo)
         this.text = ''
