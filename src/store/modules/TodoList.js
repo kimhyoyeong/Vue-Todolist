@@ -77,6 +77,7 @@ export default {
             } else {
                 state.list.push(item)
             }
+            
         },
     },
     actions: {
@@ -105,9 +106,16 @@ export default {
             localStorage.setItem("todo-orderby", item)
         },
 
-        // 데이터 추가
-        addTodo({commit}, item) {
-            commit("addTodo", item)
+        async addTodo({commit}, item) {            
+            return await axiosDefault()
+                .post("/api/v1/todos/2", item)
+                .catch((err) => {
+                    // handle error
+                    console.log("error :: " + err)
+                })
+                .then((res) => {
+                    commit("addTodo", res.data)
+                })            
         },
 
         // 전체 삭제.
