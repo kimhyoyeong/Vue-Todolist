@@ -75,6 +75,13 @@ export default {
                 }
             }
         },
+        addTodo(state, item) {
+            if (state.orderBy === "desc") {
+                state.list.unshift(item)
+            } else {
+                state.list.push(item)
+            }
+        },
     },
     actions: {
         setUserId({commit}, userId) {
@@ -106,6 +113,7 @@ export default {
                     console.log("error :: " + err)
                 })
                 .then((res) => {
+                    console.log("get todoList 조회 :: " + res.success)
                     commit("setTodoList", res.data)
                     commit("listSort")
                 })
@@ -131,9 +139,13 @@ export default {
                 })
                 .then((res) => {
                     console.log("post 추가 :: " + res.message)
+                    /*
+                    created_at 값이 서버에서 생성되는 값과 클라이언트에서 만들어지는 값이 달라서
+                    commit을 사용하지 않고 데이터를 다시 가져옴.
+                     */
+                    //commit("addTodo", item)
+                    this.dispatch('Todo/getTodoList')
                 })
-
-            this.dispatch('Todo/getTodoList')
         },
 
         // 전체 삭제.

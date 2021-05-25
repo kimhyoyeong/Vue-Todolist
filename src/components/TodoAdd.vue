@@ -52,6 +52,7 @@ export default {
         let todo = {
           text: this.text,
           state: 1,
+          //created_at: this.$moment().format('YYYY-MM-DD HH:mm:ss'),
         }
         this.$store.dispatch('Todo/addTodo', todo)
         this.text = ''
