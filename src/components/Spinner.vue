@@ -1,5 +1,5 @@
 <template>
-  <transition>
+  <transition name="spinner">
     <div class="spinner" v-if="loading">
       <div class="loader">Loading...</div>
     </div>
@@ -43,6 +43,13 @@ export default {
    transform: translateZ(0);
    animation: load6 1.7s infinite ease, round 1.7s infinite ease;
  }
+
+.spinner-enter-active, .spinner-leave-active {
+  transition: opacity .5s;
+}
+.spinner-enter, .spinner-leave-to {
+  opacity: 0;
+}
 
  @keyframes load6 {
    0% {
