@@ -1,6 +1,6 @@
 <template>
   <transition>
-    <div class="spinner" v-if="isShow">
+    <div class="spinner" v-if="loading">
       <div class="loader">Loading...</div>
     </div>
   </transition>
@@ -9,12 +9,11 @@
 <script>
 export default {
   name: "Spinner.vue",
-  props: {
-    isShow: {
-      type: Boolean,
-      default: false,
+  computed: {
+    loading() {
+      return this.$store.state.Todo.loadingState
     },
-  },
+  }
 }
 </script>
 

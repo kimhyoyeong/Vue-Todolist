@@ -44,7 +44,7 @@
     </todo-modal>
 
     <!-- Spinner -->
-    <Spinner :is-show="loading"/>
+    <Spinner/>
 
   </base-layout>
 </template>
@@ -77,7 +77,6 @@ export default {
           value: "asc",
         }
       ],
-      loading: true,
     }
   },
   computed: {
